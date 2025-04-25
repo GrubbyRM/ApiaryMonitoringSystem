@@ -1,4 +1,4 @@
-name: Firebase Data Sync
+name: Weather data fetch
 
 on:
   schedule:
