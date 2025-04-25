@@ -1,9 +1,18 @@
 import requests
 import firebase_admin
+import json
 from firebase_admin import credentials, db
 from datetime import datetime, timezone
 
-# Firebase credentials
+# Firebase credentials temporary solution
+with open("ApiaryMonitoringSystem/config/firebase-credentials.json", "r") as f:
+    data = json.load(f)
+
+data["private_key"] = data["private_key"].replace("\\n", "\n")
+
+with open("ApiaryMonitoringSystem/config/firebase-credentials.json", "w") as f:
+    json.dump(data, f, indent=2)
+
 cred = credentials.Certificate("ApiaryMonitoringSystem/config/firebase-credentials.json")
 firebase_admin.initialize_app(cred, {
     "databaseURL": "https://apiary-monitoring-system-default-rtdb.europe-west1.firebasedatabase.app/"
@@ -26,7 +35,6 @@ def fetch_weather():
     }
 
 def push_to_firebase(weather_data):
-    print(weather_data)
     ref_now = db.reference("/weather/now")
     ref_now.set({
         "temperature": weather_data["temperature"],
