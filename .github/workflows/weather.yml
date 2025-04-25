@@ -3,6 +3,7 @@ name: Weather data fetch
 on:
   schedule:
     - cron: '0 9,13,20 * * *'
+  workflow_dispatch:
 
 jobs:
   sync-weather-data:
