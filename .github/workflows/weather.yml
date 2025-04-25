@@ -22,14 +22,8 @@ jobs:
         run: |
           pip install firebase-admin requests
 
-      - name: Print current directory path
-        run: |
-          echo "Current directory: $(pwd)"
-
-      - name: List files in the directory
-        run: |
-          echo "Listing files:"
-          ls -la
+      - name: Ensure config directory exists
+        run: mkdir -p ApiaryMonitoringSystem/config
 
       - name: Create credentials file
         run: |
