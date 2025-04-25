@@ -4,7 +4,7 @@ from firebase_admin import credentials, db
 from datetime import datetime, timezone
 
 # Firebase credentials
-cred = credentials.Certificate("../config/firebase-credentials.json")
+cred = credentials.Certificate("ApiaryMonitoringSystem/config/firebase-credentials.json")
 firebase_admin.initialize_app(cred, {
     "databaseURL": "https://apiary-monitoring-system-default-rtdb.europe-west1.firebasedatabase.app/"
 })
@@ -13,7 +13,6 @@ firebase_admin.initialize_app(cred, {
 latitude = 49.8837
 longitude = 19.4930
 
-# Pobierz pogodę z Open-Meteo
 def fetch_weather():
     url = f"https://api.open-meteo.com/v1/forecast?latitude={latitude}&longitude={longitude}&current_weather=true"
     response = requests.get(url)
@@ -59,6 +58,4 @@ def generate_date():
 
 if __name__ == "__main__":
     pogoda = fetch_weather()
-    print(pogoda)
     push_to_firebase(pogoda)
-    
