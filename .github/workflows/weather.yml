@@ -29,12 +29,12 @@ jobs:
       - name: List files in the directory
         run: |
           echo "Listing files:"
-          ls -la  # Wylistowanie plików w katalogu
+          ls -la
 
       - name: Create credentials file
         run: |
-          echo "${{ secrets.FIREBASE_CREDENTIALS }}"
+          echo "${{ secrets.FIREBASE_CREDENTIALS }}" > ApiaryMonitoringSystem/config/firebase-credentials.json
 
       - name: Run weather data script
         run: |
-          python weather.py
+          python ApiaryMonitoringSystem/scripts/weather.py
