@@ -26,9 +26,14 @@ jobs:
         run: |
           echo "Current directory: $(pwd)"
 
+      - name: List files in the directory
+        run: |
+          echo "Listing files:"
+          ls -la  # Wylistowanie plików w katalogu
+
       - name: Create credentials file
         run: |
-          echo "${{ secrets.FIREBASE_CREDENTIALS }}" > ApiaryMonitoringSystem/config/credentials.json
+          echo "${{ secrets.FIREBASE_CREDENTIALS }}"
 
       - name: Run weather data script
         run: |
