@@ -61,3 +61,4 @@ if __name__ == "__main__":
     pogoda = fetch_weather()
     print(pogoda)
     push_to_firebase(pogoda)
+    

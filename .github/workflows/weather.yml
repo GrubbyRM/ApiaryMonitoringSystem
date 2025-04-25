@@ -1,0 +1,30 @@
+name: Firebase Data Sync
+
+on:
+  schedule:
+    - cron: '0 9,13,20 * * *'
+
+jobs:
+  sync-weather-data:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          pip install firebase-admin requests
+
+      - name: Create credentials file
+        run: |
+          echo "${{ secrets.FIREBASE_CREDENTIALS }}" > config/credentials.json
+
+      - name: Run weather data script
+        run: |
+          python weather.py
